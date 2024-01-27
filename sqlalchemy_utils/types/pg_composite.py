@@ -183,7 +183,7 @@ class CompositeType(UserDefinedType, SchemaType):
 
             return CompositeElement(self.expr, key, type_)
 
-    def __init__(self, name, columns, quote=None, **kwargs):
+    def __init__(self, name, columns, quote=None, schema=None, **kwargs):
         if psycopg2 is None:
             raise ImproperlyConfigured(
                 "'psycopg2' package is required in order to use CompositeType."
@@ -191,6 +191,7 @@ class CompositeType(UserDefinedType, SchemaType):
         SchemaType.__init__(
             self,
             name=name,
+            schema=schema,
             quote=quote
         )
         self.columns = columns
